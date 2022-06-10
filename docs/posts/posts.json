@@ -1,0 +1,19 @@
+[
+  {
+    "path": "posts/welcome/",
+    "title": "R Markdown Introduction",
+    "description": "Understanding Basics of R Markdown (RMD) Tutorial",
+    "author": [
+      {
+        "name": "DACSS Tutor",
+        "url": {}
+      }
+    ],
+    "date": "2022-06-10",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nWhat is R\r\nMarkdown?\r\nR Markdown\r\nView\r\n\r\nWhat is R Markdown?\r\nIt is an authoring framework for data-based projects. R Markdown is\r\nalso referred to as “RMD”. It is used to connect the data and generate\r\nreports. RMD is a simple plain text file with three types of\r\ncontent:\r\nYAML metadata to guide the RMD process\r\nCode Chunks to run\r\nText to display\r\nR Markdown View\r\n\r\n\r\nShow code\r\n\r\nknitr::include_graphics(path = \"G:/TA/image/RMD.png\")\r\n\r\n\r\n\r\n\r\nRMD can be used in the R Interactive Development Environment (IDE)\r\nfor productive notebook interface. RMD files are stored as “.RMD” . To\r\nbuild a report from the RMD file, “knit” function can be used to render\r\na report. RMD renders the report in familiar formats running the code\r\nand embedding the results in the finished document. RMD builds many\r\nfamiliar formats, such as:\r\nHTML\r\nPDF\r\nWord Doc\r\nSlide Show\r\nDashboards & many more…\r\nIn every case RMD remains as a reproducible record of work easy to\r\ntrack in version control system like Git and easy to deploy in\r\nfuture.\r\n\r\n\r\n\r\n",
+    "preview": "posts/welcome/distill-preview.png",
+    "last_modified": "2022-06-10T17:19:07-04:00",
+    "input_file": {}
+  }
+]
