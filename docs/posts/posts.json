@@ -1,6 +1,6 @@
 [
   {
-    "path": "posts/welcome/",
+    "path": "posts/R Markdown Introduction/",
     "title": "R Markdown Introduction",
     "description": "Understanding Basics of R Markdown (RMD) Tutorial",
     "author": [
@@ -9,11 +9,28 @@
         "url": {}
       }
     ],
-    "date": "2022-06-10",
+    "date": "2022-06-19",
     "categories": [],
     "contents": "\r\n\r\nContents\r\nWhat is R\r\nMarkdown?\r\nR Markdown\r\nView\r\n\r\nWhat is R Markdown?\r\nIt is an authoring framework for data-based projects. R Markdown is\r\nalso referred to as “RMD”. It is used to connect the data and generate\r\nreports. RMD is a simple plain text file with three types of\r\ncontent:\r\nYAML metadata to guide the RMD process\r\nCode Chunks to run\r\nText to display\r\nR Markdown View\r\n\r\n\r\nShow code\r\n\r\nknitr::include_graphics(path = \"G:/TA/image/RMD.png\")\r\n\r\n\r\n\r\n\r\nRMD can be used in the R Interactive Development Environment (IDE)\r\nfor productive notebook interface. RMD files are stored as “.RMD” . To\r\nbuild a report from the RMD file, “knit” function can be used to render\r\na report. RMD renders the report in familiar formats running the code\r\nand embedding the results in the finished document. RMD builds many\r\nfamiliar formats, such as:\r\nHTML\r\nPDF\r\nWord Doc\r\nSlide Show\r\nDashboards & many more…\r\nIn every case RMD remains as a reproducible record of work easy to\r\ntrack in version control system like Git and easy to deploy in\r\nfuture.\r\n\r\n\r\n\r\n",
-    "preview": "posts/welcome/distill-preview.png",
-    "last_modified": "2022-06-10T17:19:07-04:00",
-    "input_file": {}
+    "preview": "posts/R Markdown Introduction/distill-preview.png",
+    "last_modified": "2022-06-19T21:37:42-04:00",
+    "input_file": "R-Markdown-Introduction.knit.md"
+  },
+  {
+    "path": "posts/Importing Datasets from Github/",
+    "title": "Importing Datasets from Github",
+    "description": "How to import datasets from web repository..",
+    "author": [
+      {
+        "name": "DACSS Tutor",
+        "url": {}
+      }
+    ],
+    "date": "2022-06-19",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nWhat is\r\nGithub?\r\nHow to import datasets from\r\nGithub?\r\n\r\nWhat is Github?\r\nAt a high level, GitHub is a website and cloud-based service that\r\nhelps developers store and manage their code, as well as track and\r\ncontrol changes to their code. To understand exactly what GitHub is, you\r\nneed to know two connected principles: - Version control - Git\r\nWhat is Version Control?\r\nVersion control helps developers track and manage changes to a\r\nsoftware project’s code. As a software project grows, version control\r\nbecomes essential. Version control lets developers safely work through\r\nbranching and merging. With branching, you can duplicate part of the\r\nsource code (called the repository) and then safely\r\nmake changes to that part of the code without affecting the rest of the\r\nproject. Then, once you get your part of the code working properly, you\r\ncan merge that code back into the main source code to make it official.\r\nAll of these changes are then tracked and can be reverted if need\r\nbe.\r\nWhat is Git?\r\nGit is a specific open-source version control system created by Linus\r\nTorvalds in 2005. Specifically, Git is a distributed version control\r\nsystem, which means that the entire codebase and history is available on\r\nyour computer, which allows for easy branching and merging. Essentially,\r\nit makes it a lot easier for individuals and teams to use Git for\r\nversion control and collaboration.\r\nNow that we understand what is Git and Github, we can use it as a\r\nrepository to host data sets and directly import data sets from there to\r\nRStudio for executing the projects.\r\nHow to import datasets from\r\nGithub?\r\nFor the purpose of the DACSS 601 course work, all the relevant\r\ndatasets for classwork have been hosted in Github in the repo\r\nDACSS-601-SUMMER-2022-BLOGS. This repo has a file\r\ndatasets with two sub files:\r\n\r\n\r\nShow code\r\n\r\nknitr::include_graphics(path = \"F:/DACSS-601-SUMMER-2022-BLOGS/image/gitrepoaddress.png\")\r\n\r\n\r\n\r\n\r\nThis repo has a file datasets with two sub-files: -\r\nAdvanced_Uncleaned Datasets -\r\nbasic Datasets\r\nYou can use any of the sub-files to access the data sets. There are\r\ndifferent types of data sets available with various difficulty levels.\r\nPlease chose a data set with your level of comfort and import the same\r\nto R Studio to Github.\r\n\r\n\r\nShow code\r\n\r\nknitr::include_graphics(path = \"F:/DACSS-601-SUMMER-2022-BLOGS/image/gitrepodatasetsubfile.png\")\r\n\r\n\r\n\r\n\r\nSo let us import a data set from basic datasets\r\nsub-file.\r\n\r\n\r\nShow code\r\n\r\nknitr::include_graphics(path = \"F:/DACSS-601-SUMMER-2022-BLOGS/image/gitreposubfilebasicdatasets.png\")\r\n\r\n\r\n\r\n\r\nLet us now import poultry_tidy.csv to RStudio. In order\r\nto import the data set from Github repo, we should be careful of\r\nimporting it from RAWcontent only. To access the\r\nRAW content data, you need to select the concerned data set\r\nby clicking on it first. That will take you to the data set\r\npage in Github.\r\n\r\n\r\nShow code\r\n\r\nknitr::include_graphics(path = \"F:/DACSS-601-SUMMER-2022-BLOGS/image/gitreposubfilebasicdatasetsrawcontentlink.png\")\r\n\r\n\r\n\r\n\r\nNow, select the RAW tab highlighted in the above image\r\nto access the raw content data else the data will always default to\r\nhtml type and will not get imported properly in\r\nRStudio.\r\n\r\n\r\nShow code\r\n\r\nknitr::include_graphics(path = \"F:/DACSS-601-SUMMER-2022-BLOGS/image/gitreposubfilebasicdatasetsrawcontentdata.png\")\r\n\r\n\r\n\r\n\r\nYou can now copy the url and use it to import the data\r\nset as shown in the code chunk below:\r\n\r\n\r\nShow code\r\n\r\n# invoke package readr\r\nlibrary(readr)\r\n\r\n#import poultry dataset\r\npoultry <- read_csv(\"https://raw.githubusercontent.com/abhinavkr26/DACSS-601-SUMMER-2022-BLOGS/main/datasets/basic%20datasets/poultry_tidy.csv\")\r\n\r\nhead(poultry)\r\n\r\n\r\n# A tibble: 6 × 4\r\n  Product  Year Month    Price_Dollar\r\n  <chr>   <dbl> <chr>           <dbl>\r\n1 Whole    2013 January          2.38\r\n2 Whole    2013 February         2.38\r\n3 Whole    2013 March            2.38\r\n4 Whole    2013 April            2.38\r\n5 Whole    2013 May              2.38\r\n6 Whole    2013 June             2.38\r\n\r\nNow, here we can observe that we have directly imported the dataset\r\nfrom Github without downloading or cloning the repository locally in our\r\nsystem. This is critical skill in our toolset as we may not always be\r\nable to download or clone repositiores in our local system. Also, it\r\ntakes substantial space in our local system. However, if there is a need\r\nto download or clone the datasets then it can be done easily and then\r\nthe datasets can easily be imported to R Studio from the local system\r\nitself. We will cover that in the next blog.\r\nNow, please do try to import the other datasets from the datasets\r\nrepository on your own to practice. For any errors that you are unable\r\nto resolve, please reach out to the course teaching assistanct or the\r\nfaculty. Although, it is highly recomended that you look for the\r\nsolution to the error online on platforms such as\r\nStack Overflow for a better understanding and mitigate such\r\nissues in future on your own.\r\n\r\n\r\n\r\n",
+    "preview": "posts/Importing Datasets from Github/distill-preview.png",
+    "last_modified": "2022-06-19T21:57:54-04:00",
+    "input_file": "Importing-Datasets-from-Github.knit.md"
   }
 ]
