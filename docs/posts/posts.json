@@ -32,5 +32,22 @@
     "preview": "posts/Importing Datasets from Github/distill-preview.png",
     "last_modified": "2022-06-19T21:57:54-04:00",
     "input_file": "Importing-Datasets-from-Github.knit.md"
+  },
+  {
+    "path": "posts/Video Blog of R Markdown Introduction/",
+    "title": "R Markdown Introduction Video Lecture",
+    "description": "Understanding Basics of R Markdown (RMD) Tutorial",
+    "author": [
+      {
+        "name": "DACSS Tutor",
+        "url": {}
+      }
+    ],
+    "date": "2022-06-19",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-06-19T22:33:03-04:00",
+    "input_file": "Vlog-of-R-Markdown-Introduction.knit.md"
   }
 ]
