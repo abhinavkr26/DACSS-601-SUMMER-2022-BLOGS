@@ -1,7 +1,7 @@
 ---
-title: "Importing Datasets from Github"
+title: "Importing Datasets from Local System"
 description: |
-  How to import datasets from web repository..
+  How to import datasets from local repository or file..
 author:
   - name: DACSS Tutor
     affiliation: University of Massachusetts, Amherst
@@ -24,99 +24,52 @@ knitr::opts_chunk$set(echo = FALSE,
 
 ```
 
-## What is Github?
 
-At a high level, GitHub is a website and cloud-based service that helps developers store and manage their code, as well as track and control changes to their code. To understand exactly what GitHub is, you need to know two connected principles:
-- Version control
-- Git
+## What is Local system?
 
-#### What is Version Control?
+Any computing device with data storage ability is referred to as our Local system. It could be our laptops, desktops, tablets, touch phones, etc. 
 
-Version control helps developers track and manage changes to a software project’s code. As a software project grows, version control becomes essential. Version control lets developers safely work through branching and merging. With branching, you can duplicate part of the source code (called the **repository**) and then safely make changes to that part of the code without affecting the rest of the project. Then, once you get your part of the code working properly, you can merge that code back into the main source code to make it official. All of these changes are then tracked and can be reverted if need be.
+### What is Local repository or file?
 
+Any file that we create in our local computing device to store objects, documents, or datasets is referred to as local reposiorty or file.
 
 
-#### What is Git?
+## How to import dataset from Local system?
 
-Git is a specific open-source version control system created by Linus Torvalds in 2005. Specifically, Git is a distributed version control system, which means that the entire codebase and history is available on your computer, which allows for easy branching and merging. Essentially, it makes it a lot easier for individuals and teams to use Git for version control and collaboration.
+In the previous tutorial, we discussed importing datasets from Github. Now, we will discuss how easily we can import datasets from any file from our system without giving the complete `url` path in the function argument. 
 
-
-Now that we understand what is Git and Github, we can use it as a repository to host data sets and directly import data sets from there to `RStudio` for executing the projects.
-
-
-## How to import datasets from Github?
-
-For the purpose of the DACSS 601 course work, all the relevant datasets for classwork have been hosted in Github in the repo `DACSS-601-SUMMER-2022-BLOGS`. This repo has a file `datasets` with two sub files:
+The first thing that we need to do is to find out where our working directory rests. We can easily do so by using `getwd()` function. In the below code chunk, we will use the function to see where is the `DACSS Tutor` working directory currently. 
 
 
 
-```{r echo=FALSE, fig.width = 20, fig.height = 20, fig.align='center'}
+```{r Working Directory Check}
+
+getwd()
+
+```
+From the output, we can observe that location of the working directory. Suppose, we need to set it elsewhere then we can do so by using the function `setwd()` function. For the purpose of this tutorial we will use the existing locating of the working directory.The below code chunk shows a hashed out function to set the working directory by using the complete url path for location where you want to set your working directory. 
 
 
-knitr::include_graphics(path = "F:/DACSS-601-SUMMER-2022-BLOGS/image/gitrepoaddress.png")
+```{r Setting Working Directory Location}
 
-
+# setwd("F:/DACSS-601-SUMMER-2022-BLOGS")
 
 
 ```
 
-This repo has a file `datasets` with two sub-files:
-  - `Advanced_Uncleaned Datasets`
-  - `basic Datasets`
-  
-You can use any of the sub-files to access the data sets. There are different types of data sets available with various difficulty levels. Please chose a data set with your level of comfort and import the same to R Studio to Github. 
-
-```{r echo=FALSE, fig.width = 20, fig.height = 20, fig.align='center'}
+Let us now import a dataset from the working directory. The existing working directory is in `F` drive of the local system in the local file/repository `DACSS-601-SUMMER-2022-BLOGS`. Within the local file is a sub file `datasets` from where we will import `organiceggpoultry` dataset. It is in `excel` file format. 
 
 
-knitr::include_graphics(path = "F:/DACSS-601-SUMMER-2022-BLOGS/image/gitrepodatasetsubfile.png")
+```{r Importing Datsset from Local System}
 
-```
+# invoking "readxl" package to import csv file
+library(readxl)
 
-So let us import a data set from `basic datasets` sub-file. 
+# assigning data set to an object
+egg <- read_excel("F:/DACSS-601-SUMMER-2022-BLOGS/datasets/Advanced_ Uncleaned datasets/organiceggpoultry.xlsx")
 
-```{r echo=FALSE, fig.width = 20, fig.height = 20, fig.align='center'}
-
-
-knitr::include_graphics(path = "F:/DACSS-601-SUMMER-2022-BLOGS/image/gitreposubfilebasicdatasets.png")
+knitr::kable(head(egg))
 
 ```
 
-Let us now import `poultry_tidy.csv` to RStudio. In order to import the data set from Github repo, we should be careful of importing it from `RAW`content only. To access the `RAW` content data, you need to select the concerned data set by `clicking` on it first. That will take you to the data set page in Github.
-
-
-```{r echo=FALSE, fig.width = 20, fig.height = 20, fig.align='center'}
-
-
-knitr::include_graphics(path = "F:/DACSS-601-SUMMER-2022-BLOGS/image/gitreposubfilebasicdatasetsrawcontentlink.png")
-
-```
-
-Now, select the `RAW` tab highlighted in the above image to access the raw content data else the data will always default to `html` type and will not get imported properly in RStudio. 
-
-
-```{r echo=FALSE, fig.width = 20, fig.height = 20, fig.align='center'}
-
-
-knitr::include_graphics(path = "F:/DACSS-601-SUMMER-2022-BLOGS/image/gitreposubfilebasicdatasetsrawcontentdata.png")
-
-```
-
-You can now copy the `url` and use it to import the data set as shown in the code chunk below:
-
-```{r}
-# invoke package readr
-library(readr)
-
-#import poultry dataset
-poultry <- read_csv("https://raw.githubusercontent.com/abhinavkr26/DACSS-601-SUMMER-2022-BLOGS/main/datasets/basic%20datasets/poultry_tidy.csv")
-
-head(poultry)
-
-
-
-```
-
-Now, here we can observe that we have directly imported the dataset from Github without downloading or cloning the repository locally in our system. This is critical skill in our toolset as we may not always be able to download or clone repositiores in our local system. Also, it takes substantial space in our local system. However, if there is a need to download or clone the datasets then it can be done easily and then the datasets can easily be imported to R Studio from the local system itself. We will cover that in the next blog.
-
-Now, please do try to import the other datasets from the datasets repository on your own to practice. For any errors that you are unable to resolve, please reach out to the course teaching assistanct or the faculty. Although, it is highly recomended that you look for the solution to the error online on platforms such as `Stack Overflow` for a better understanding and mitigate such issues in future on your own. 
+We can observe here that the dataset has been imported from the local system to R Studio. Using the `head()` function we are able to observe the first few records of the dataset. Ofcourse this dataset is unclean and messy hence, we are unable to get a clean view of the data. We will tackle the challenge of cleaning messy data in future tutorials. In case you have any questions regarding this tutorial, then kindly address your questions to your teaching assistant or faculty.
