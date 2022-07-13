@@ -1,0 +1,121 @@
+---
+title: "More data import from Github using `rio` package"
+description: |
+  More data import and an introduction to the dplyr package.
+author:
+  - name: DACSS Tutor
+    affiliation: University of Massachusetts, Amherst
+    affiliation_url: https://www.umass.edu
+    
+    
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    toc: true
+    code_folding: true
+
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+
+```
+
+
+## Introduction  
+Today, we'll be working on how to import a slightly more difficult dataset. Specifically, we'll be looking at a dataset on the cost of food borne illnesses in the US. These data were obtained from data.gov.  
+  
+This data is in Excel file format and are not optimized to easily read into `R`. Luckily, we can use the `rio` package to get them into `R` using `import` function.  
+
+You will also notice that in this case you are unable to get a `raw content url` for the file OR if the file size is too big for `github` then it will force you to download the data rather than giving the raw content details. `rio` package will solve this problem.
+  
+```{r message=F, warning=F}
+library(rio)
+```
+  
+## Reading in the data
+  
+The first thing we'll notice is that we need to skip a few rows. Specifically, we need to skip the first 5 rows, as they aren't needed. We can specify `skip=5` when we read in the data.  
+
+```{r}
+d <- rio::import("http://raw.githubusercontent.com/abhinavkr26/DACSS-601-SUMMER-2022-BLOGS/main/datasets/basic%20datasets/Total_cost_for_top_15_pathogens_2018.xlsx",
+                skip=5)
+
+d
+```
+  
+There a couple things wrong here. First, the column names are wrong. Since we skipped the column names, `R` tried naming the columns based on the first row of data (which is wrong!). We can specify the column names ourselves, using the `col_names` argument. We can give `col_names` a **character vector** that contains the names we want to give our columns. Specifically, we can specify `c("pathogen","cases","cost")` as the names of our columns. Note that `pathogen` wasn't specified in the original data file, but we're specifying it here.
+
+Next, you'll notice that the data go on longer than we need. There's some white space in the data file, as well as a row containing the total cost for all pathogens (which we can eliminate). There's also a couple of notes that we can eliminate. Rather than specify `skip`, we can instead use the `range` argument to specify the **range** of cells we want to read in. Looking back at our data file, it looks like we only need cells **A6:C20**. 
+  
+![](../data.png)  
+
+Let's try this again! As a reminder, we will be using the `col_names` argument to name the columns of our data and the `range` argument to specify the cells we want `R` to read in. Also note that we specify the `path` argument explicitly now. `read_excel()` by default assumes the first thing you give it is the file path, but it doesn't hurt to be explicit.  
+
+```{r}
+dataset <- rio::import("http://raw.githubusercontent.com/abhinavkr26/DACSS-601-SUMMER-2022-BLOGS/main/datasets/basic%20datasets/Total_cost_for_top_15_pathogens_2018.xlsx", range="A6:C20", col_names=c("pathogen","cases","cost"))
+
+dataset
+```
+  
+Voila! The dataset looks great.  
+  
+## A little bit about dplyr  
+
+`dplyr` is an `R` package for manipulating, wrangling, and transforming data. We will touch on it more next week, but this is a brief introduction to a few useful `dplyr` functions.  
+
+```{r message=F, warning=F}
+library(dplyr)
+```
+  
+### select()  
+
+`select()` allows us to only pick out **certain** columns from a dataframe.  
+
+Below, we extract the `cases ` column from our `dataset` object (see above). We don't have to specify it in quotes (the reasons for this are beyond the scope of this lesson).  
+  
+```{r}
+select(dataset, cases)
+```
+
+The first argument tells `R` the dataframe we are looking in (`dataset`), and the second argument tells `R` the columns we want to pick out.  
+We can also select multiple columns.  
+
+```{r}
+select(dataset, cases, cost)
+```
+
+You can even use the `-` operator to tell `R` to **not** select certain columns. This is particularly helpful when you have a dataset with many columns, but you want to remove a couple of them. Rather than say, write out the names of 28 columns you **want** to include, you can simply write the names of the 2 columns you **don't** want to include.  
+
+```{r}
+select(dataset, -pathogen)
+```
+
+### filter()  
+
+The `filter()` function allows us to only include rows of the data that meet certain criteria. For example, imagine that we only want to analyze pathogens that infected at least 10,000 people. We can use `filter()` to tell `R` to only include rows of the data where `cases` is greater than or equal to 10,000.  
+
+```{r}
+filter(dataset, cases>=10000)
+```
+  
+The first argument tells `R` the dataframe we want to look in, while the second argument tells `R` the criteria for including a row. Specifically, a row in `dataset` should **only** be included if its value on the variable `cases` is greater than or equal to 10000.  
+
+We can also use the `&` (and) operator to include **multiple criteria**. For example, say we want to filter out the rows of data for pathogens that don't have at least 10,000 cases and costed less than $10,000,000 to the US in 2018.  
+
+```{r}
+dataset_filtered <- filter(dataset, cases>=10000 & cost>=10000000)
+```
+  
+We might also be interested in pathogens that had a high case count **OR** a high economic cost. For this, we can use the logical or (`|`) operator to consider pathogens with at least 10,000 cases **OR** at least $10,000,000 in cost to the US.  
+  
+```{r}
+filter(dataset, cases>=10000 | cost>=10000000)
+```
+  
+## Wrapping up  
+
+There's many types of complicated datasets that you'll encounter in your data analysis career. This has been a short introduction to these types of tricky datasets and some useful `dplyr` functions for working with them.  
